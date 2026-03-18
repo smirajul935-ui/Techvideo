@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVideo - Random & Private Video Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white h-screen flex flex-col overflow-hidden">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-md flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-500"><i class="fas fa-video"></i> TechVideo</h1>
+        <div id="statusText" class="text-sm font-semibold text-gray-400">Ready to connect</div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 relative w-full h-full flex items-center justify-center p-4">
+        
+        <!-- Landing Page Panel -->
+        <div id="landingPanel" class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+            <h2 class="text-2xl font-bold mb-6">Connect with the World</h2>
+            
+            <button id="btnRandom" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg mb-4 transition">
+                <i class="fas fa-random mr-2"></i> Start Random Chat
+            </button>
+            
+            <div class="flex items-center my-4">
+                <hr class="flex-1 border-gray-600"><span class="px-3 text-gray-400">OR</span><hr class="flex-1 border-gray-600">
+            </div>
+
+            <button id="btnCreateRoom" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg mb-4 transition">
+                <i class="fas fa-plus mr-2"></i> Create Private Room
+            </button>
+
+            <div class="flex gap-2">
+                <input type="text" id="roomCodeInput" placeholder="Enter Room Code" class="flex-1 bg-gray-700 text-white rounded-lg px-4 py-2 uppercase outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="btnJoinRoom" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition">Join</button>
+            </div>
+        </div>
+
+        <!-- Video Chat Panel -->
+        <div id="videoPanel" class="hidden w-full h-full relative">
+            <!-- Remote Video (Main) -->
+            <video id="remoteVideo" autoplay playsinline class="w-full h-full object-cover rounded-xl bg-black"></video>
+            
+            <!-- Local Video (PIP) -->
+            <video id="localVideo" autoplay playsinline muted class="absolute top-4 right-4 w-32 md:w-48 h-auto object-cover rounded-lg border-2 border-gray-600 shadow-lg bg-gray-800"></video>
+
+            <!-- Room Code Display (For Private) -->
+            <div id="roomCodeDisplay" class="hidden absolute top-4 left-4 bg-black/60 px-4 py-2 rounded-lg text-sm font-mono tracking-widest">
+                CODE: <span id="codeSpan" class="text-green-400 font-bold"></span>
+            </div>
+
+            <!-- Controls -->
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-800/80 px-6 py-3 rounded-full flex gap-4 shadow-xl backdrop-blur-sm">
+                <button id="btnToggleAudio" class="bg-gray-700 hover:bg-gray-600 p-3 rounded-full text-white transition"><i class="fas fa-microphone"></i></button>
+                <button id="btnToggleVideo" class="bg-gray-700 hover:bg-gray-600 p-3 rounded-full text-white transition"><i class="fas fa-video"></i></button>
+                <button id="btnNext" class="hidden bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full font-bold transition">Next</button>
+                <button id="btnEndCall" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full font-bold transition">End Call</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+</body>
+</html>
